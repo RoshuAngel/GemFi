@@ -56,37 +56,6 @@ const contAbi = [
 		"type": "event"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "tokenId",
-				"type": "uint256"
-			}
-		],
-		"name": "approve",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_durationInHours",
-				"type": "uint256"
-			}
-		],
-		"name": "changeWinnerPickDuration",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -104,101 +73,6 @@ const contAbi = [
 		],
 		"name": "GemUpgraded",
 		"type": "event"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint8",
-				"name": "_mintAmount",
-				"type": "uint8"
-			}
-		],
-		"name": "mint",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_gemId",
-				"type": "uint256"
-			}
-		],
-		"name": "pickWinner",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "from",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "tokenId",
-				"type": "uint256"
-			}
-		],
-		"name": "safeTransferFrom",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "from",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "tokenId",
-				"type": "uint256"
-			},
-			{
-				"internalType": "bytes",
-				"name": "_data",
-				"type": "bytes"
-			}
-		],
-		"name": "safeTransferFrom",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "operator",
-				"type": "address"
-			},
-			{
-				"internalType": "bool",
-				"name": "approved",
-				"type": "bool"
-			}
-		],
-		"name": "setApprovalForAll",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
 	},
 	{
 		"anonymous": false,
@@ -226,52 +100,6 @@ const contAbi = [
 		"type": "event"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "from",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "tokenId",
-				"type": "uint256"
-			}
-		],
-		"name": "transferFrom",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_gemOne",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_gemTwo",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_gemThree",
-				"type": "uint256"
-			}
-		],
-		"name": "upgradeGems",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -285,23 +113,16 @@ const contAbi = [
 		"type": "event"
 	},
 	{
-		"inputs": [
+		"inputs": [],
+		"name": "RANDOM",
+		"outputs": [
 			{
-				"internalType": "uint256",
-				"name": "_gemId",
-				"type": "uint256"
+				"internalType": "address",
+				"name": "",
+				"type": "address"
 			}
 		],
-		"name": "withdrawBalance",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "withdrawCollectedFee",
-		"outputs": [],
-		"stateMutability": "nonpayable",
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -321,6 +142,24 @@ const contAbi = [
 		"inputs": [
 			{
 				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "tokenId",
+				"type": "uint256"
+			}
+		],
+		"name": "approve",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
 				"name": "owner",
 				"type": "address"
 			}
@@ -334,6 +173,19 @@ const contAbi = [
 			}
 		],
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_durationInHours",
+				"type": "uint256"
+			}
+		],
+		"name": "changeWinnerPickDuration",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -514,6 +366,19 @@ const contAbi = [
 		"type": "function"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "uint8",
+				"name": "_mintAmount",
+				"type": "uint8"
+			}
+		],
+		"name": "mint",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
 		"inputs": [],
 		"name": "name",
 		"outputs": [
@@ -559,16 +424,85 @@ const contAbi = [
 		"type": "function"
 	},
 	{
-		"inputs": [],
-		"name": "RANDOM",
-		"outputs": [
+		"inputs": [
 			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
+				"internalType": "uint256",
+				"name": "_gemId",
+				"type": "uint256"
 			}
 		],
-		"stateMutability": "view",
+		"name": "pickWinner",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "from",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "tokenId",
+				"type": "uint256"
+			}
+		],
+		"name": "safeTransferFrom",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "from",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "tokenId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bytes",
+				"name": "data",
+				"type": "bytes"
+			}
+		],
+		"name": "safeTransferFrom",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "operator",
+				"type": "address"
+			},
+			{
+				"internalType": "bool",
+				"name": "approved",
+				"type": "bool"
+			}
+		],
+		"name": "setApprovalForAll",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -607,6 +541,49 @@ const contAbi = [
 		"inputs": [
 			{
 				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "tokenByIndex",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "owner",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "tokenOfOwnerByIndex",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
 				"name": "_gemId",
 				"type": "uint256"
 			}
@@ -624,6 +601,65 @@ const contAbi = [
 	},
 	{
 		"inputs": [],
+		"name": "totalSupply",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "from",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "tokenId",
+				"type": "uint256"
+			}
+		],
+		"name": "transferFrom",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_gemOne",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_gemTwo",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_gemThree",
+				"type": "uint256"
+			}
+		],
+		"name": "upgradeGems",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
 		"name": "winnerPickDuration",
 		"outputs": [
 			{
@@ -634,10 +670,30 @@ const contAbi = [
 		],
 		"stateMutability": "view",
 		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_gemId",
+				"type": "uint256"
+			}
+		],
+		"name": "withdrawBalance",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "withdrawCollectedFee",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
 	}
 ]
-
-const contAddress = "0x8242dE2B0F2bdFCF9afd90C221673620E8f9Ae92"; //Test FTM net/ hardhat
+// FIXME
+const contAddress = "0xaB7B4c595d3cE8C85e16DA86630f2fc223B05057"; //Test FTM net/ hardhat
 
 var nftContract;
 var currentAddr;
@@ -693,9 +749,9 @@ async function loadWeb3() {
 		setChainListener(window.ethereum);
 		setAccListener(window.ethereum);
 		$('#connectButton').attr('disabled', true)
-		var chainID = await web3.eth.net.getId();
+		var chainID = await web3.eth.getChainId();
 		console.log('Connected to chain ' + chainID)
-		if (chainID == 4002) { //4002 test net ftm //main 250, test 0xfa2 ///localhost hardhat 31337
+		if (chainID == 31337) { //4002 test net ftm //main 250 ///localhost hardhat 31337
 			$('#connectButton').attr('disabled', false);
 			$('#connectButton').click(function () {
 				connect();
@@ -732,12 +788,12 @@ async function getMintTokenID(tx, num) {
 		nftContract.events.Transfer({ fromBlock: tx.blockNumber }, function (error, events) { })
 			.on('data', function (events) {
 				var jj = events.returnValues.tokenId;
-				console.log(jj);
+				// console.log(jj);
 				if (!newMints.includes(jj)) {
 					newMints.push(jj);
 				}
 				if (newMints.length == num) {
-					sendAlertPerm("New Minted Gem\n" + JSON.stringify(newMints));
+					sendAlertPerm("New Minted Gem<br/>" + JSON.stringify(newMints));
 					clearInterval(interval1);
 				}
 			});
@@ -749,38 +805,25 @@ async function getMintTokenID(tx, num) {
 * ----------------------------*/
 async function mint(mintAmount) {
 	var mintPrice = 1e18;
+	//FIXME call mintcost from contract
 	// var mintPrice = nftContract.methods.mintCost().call();
-	console.log(mintPrice);
+	// console.log(mintPrice);
 	var totalPrice = mintPrice * mintAmount;
 
 	await nftContract.methods.mint(mintAmount).send({
 		from: currentAddr,
 		value: totalPrice
-	}, function (error, hash) {
-		if (!error) {
-			console.log("Transaction sent!", hash);
-
-			const interval = setInterval(function () {
-				sendAlertPerm("Getting mint status...");
-				console.log("Attempting to get transaction receipt...");
-
-				web3.eth.getTransactionReceipt(hash, function (error, rec) {
-					if (rec) {
-						console.log(rec);
-						if (rec.status == true) {
-							clearInterval(interval);
-							try {
-								getMintTokenID(rec, mintAmount);
-							} catch (e) {
-								console.log("Error getting mint Id:", e);
-							}
-							updateData();
-						}
-					}
-				});
-			}, 3000);
+	}).on('transactionHash', function (hash) {
+		console.log("Transaction sent!", hash);
+		sendAlertPerm("Getting mint status...");
+		console.log("Attempting to get transaction receipt...");
+	}).on('receipt', function (receipt) {
+		try {
+			getMintTokenID(receipt, mintAmount);
+		} catch (e) {
+			console.log("Error getting mint Id:", e);
 		}
-
+		updateData();
 	}).catch(err => {
 		if (err.code === 4001) {
 			// EIP-1193 userRejectedRequest error
@@ -788,7 +831,7 @@ async function mint(mintAmount) {
 			sendAlertPerm("User denied Transaction");
 		}
 		else {
-			console.log("Something went wrong while submitting your transaction:", error);
+			console.log("Something went wrong while submitting your transaction:", err);
 		}
 	});
 }
@@ -815,7 +858,7 @@ async function upgradeStatus(tx) {
 				success = events.returnValues.trueOrFalse;
 				if (success == true) {
 					tokenUpgraded = events.returnValues.gemId;
-					sendAlertPerm("Success: Gems upgraded!\nNew Gem #" + tokenUpgraded);
+					sendAlertPerm("Success: Gems upgraded!<br/>New Gem #" + tokenUpgraded);
 
 				} else {
 					sendAlertPerm("Last Upgrade failed");
@@ -834,32 +877,19 @@ async function upgrade(gem1, gem2, gem3) {
 	await nftContract.methods.upgradeGems(gem1, gem2, gem3).send({
 		from: currentAddr,
 		value: 0
-	}, function (error, hash) {
-		if (!error) {
-			console.log("Transaction sent!", hash);
+	}).on('transactionHash', function (hash) {
+		console.log("Transaction sent!", hash);
 
-			const interval = setInterval(function () {
-				console.log("Attempting to get transaction receipt...");
-				sendAlertPerm("Getting upgrade status...");
-
-				web3.eth.getTransactionReceipt(hash, function (error, rec) {
-
-					if (rec) {
-						console.log(rec);
-						if (rec.status == true) {
-							clearInterval(interval);
-							try {
-								upgradeStatus(rec);
-							} catch (e) {
-								console.log("Error getting upgrade status", e);
-								sendAlertPerm("Error getting Upgrade status");
-							}
-							updateData();
-						}
-					}
-				});
-			}, 3000);
+		console.log("Attempting to get transaction receipt...");
+		sendAlertPerm("Getting upgrade status...");
+	}).on('receipt', function (receipt) {
+		try {
+			upgradeStatus(receipt);
+		} catch (e) {
+			console.log("Error getting upgrade status", e);
+			sendAlertPerm("Error getting Upgrade status");
 		}
+		updateData();
 	}).catch(err => {
 		if (err.code === 4001) {
 			// EIP-1193 userRejectedRequest error
@@ -867,7 +897,7 @@ async function upgrade(gem1, gem2, gem3) {
 			sendAlertPerm("User denied Transaction");
 		}
 		else {
-			console.log("Something went wrong while submitting your transaction:", error);
+			console.log("Something went wrong while submitting your transaction:", err);
 		}
 	});
 }
@@ -906,36 +936,22 @@ async function withdrawBalance(token) {
 	await nftContract.methods.withdrawBalance(token).send({
 		from: currentAddr,
 		value: 0
-	}, function (error, hash) {
-		if (!error) {
-			console.log("Transaction sent!", hash);
+	}).on('transactionHash', function (hash) {
+		console.log("Transaction sent!", hash);
 
-			const interval = setInterval(function () {
-				sendAlertPerm("Getting Withdraw status...")
-				console.log("Attempting to get transaction receipt...");
-
-				web3.eth.getTransactionReceipt(hash, function (error, rec) {
-					if (rec) {
-						console.log(rec);
-						if (rec.status == true) {
-							sendAlertPerm("Withdraw successful")
-							clearInterval(interval);
-							updateData();
-						}
-					}
-				});
-			},
-				1000);
-		}
+		console.log("Attempting to get transaction receipt...");
+		sendAlertPerm("Getting upgrade status...");
+	}).on('receipt', function (receipt) {
+		sendAlertPerm("Withdraw successful")
+		updateData();
 	}).catch(err => {
-		hj
 		if (err.code === 4001) {
 			// EIP-1193 userRejectedRequest error
 			// If this happens, the user rejected the connection request.
 			sendAlertPerm("User denied Transaction");
 		}
 		else {
-			console.log("Something went wrong while submitting your transaction:", error);
+			console.log("Something went wrong while submitting your transaction:", err);
 		}
 	});
 }
@@ -949,17 +965,41 @@ async function withdrawWrapper() {
 	// console.log(token);
 	withdrawBalance(token);
 }
+/* ----------------------------
+*	Deployer previledge
+* ----------------------------*/
+async function changeWinnerPickDuration() {
+	await nftContract.methods.changeWinnerPickDuration(1).send({
+		from: currentAddr,
+		value: 0
+	}).on('transactionHash', function (hash) {
+		console.log("Transaction sent!", hash);
+		console.log("Attempting to get transaction receipt...");
+		sendAlertPerm("Getting upgrade status...");
+	}).on('receipt', function (receipt) {
+		console.log("Frequency change successful");
+		// updateData();
+	}).catch(err => {
+		if (err.code === 4001) {
+			// EIP-1193 userRejectedRequest error
+			// If this happens, the user rejected the connection request.
+			sendAlertPerm("User denied Transaction");
+		}
+		else {
+			console.log("Something went wrong while submitting your transaction:", err);
+		}
+	});
+}
 
-async function winnerStatus(tx) {
+async function winnerStatus(tx, gemPot) {
 	var interval = setTimeout(function a() {
 		var winner = 0;
 
-		nftContract.events.WinnerPicked(function (error, events) { })
+		nftContract.events.WinnerPicked({ fromBlock: tx.blockNumber }, function (error, events) { })
 			.on('data', function (events) {
-				console.log(events.returnValues);
-				winner = events.returnValues.gemId
-				sendAlertPerm("Winner !!!\nGem #" + winner + " Pot: " + gemPot);
-				reloadStats();
+				// console.log(events.returnValues);
+				winner = events.returnValues.gemId;
+				sendAlertPerm("Congrats Winner !!!<br/>" + "Gem #" + winner + " Pot: " + gemPot / 1e18 + " FTM");
 				clearInterval(interval);
 			});
 	}, 3000);
@@ -988,28 +1028,33 @@ async function pickWinner() {
 	var eligible = checkEligibility();
 
 	if (eligible != 0) {
+		var gemPot = await nftContract.methods.gamePot().call();
+		console.log(gemPot);
+
 		await nftContract.methods.pickWinner(eligible).send({
-			from: currentAddr,
-			value: 0
-		}, function (hash) {
-			console.log("Transaction sent!", hash);
-			// clearInterval(interval);
-			reloadStats();
-			try {
-				winnerStatus(eligible);
-			} catch (e) {
-				console.log("Error getting winner status", e);
-			}
-		}).catch(err => {
-			if (err.code === 4001) {
-				// EIP-1193 userRejectedRequest error
-				// If this happens, the user rejected the connection request.
-				sendAlertPerm("User denied Transaction");
-			}
-			else {
-				console.log("Something went wrong while submitting your transaction:", error);
-			}
-		});
+			from: currentAddr
+		})
+			.on('transactionHash', function (hash) {
+				console.log("Transaction sent!", hash);
+				console.log("Attempting to get transaction receipt...");
+				sendAlertPerm("Getting Winner status...");
+			}).on('receipt', function (receipt) {
+				try {
+					winnerStatus(receipt, gemPot);
+				} catch (e) {
+					console.log("Error getting winner status", e);
+				}
+				reloadStats();
+			}).catch(err => {
+				if (err.code === 4001) {
+					// EIP-1193 userRejectedRequest error
+					// If this happens, the user rejected the connection request.
+					sendAlertPerm("User denied Transaction");
+				}
+				else {
+					console.log("Something went wrong while submitting your transaction:", err);
+				}
+			});
 	} else {
 		sendAlertPerm("Not eligible to call pickWinner", 'red');
 	}
@@ -1019,7 +1064,8 @@ async function pickWinner() {
 async function contractCreationTime() {
 	var blockNumber, time, date;
 
-	hash = '0xbee995a661439fbcc8edf13df8c47ccd22667f2e40ff729aba607c86d7d33412'; // from create ftm-scan
+	// FIXME
+	hash = '0x84b42165e183c66699e5784fe875a1a83c50b4ba09651df6d7ee7d9415637fa9'; // from create ftm-scan
 
 	await web3.eth.getTransactionReceipt(hash, function (err, rec) {
 		if (rec) {
@@ -1098,27 +1144,33 @@ async function reloadStats() {
 				}
 				stat2 += gems;
 
-				var freq = await nftContract.methods.winnerPickDuration().call();
-				var block = await web3.eth.getBlock("latest");
-				var currentTime = block.timestamp;
+				if (gemPot > 0) {
+					var freq = await nftContract.methods.winnerPickDuration().call();
+					// NOTE call once from deployer ...............................
+					// await changeWinnerPickDuration();
 
-				var math = (currentTime / 1e10) - ((lastDraw / 1e10) + (freq * 3600));
-				//console.log("freq " + freq + " currentTime " + currentTime + " last draw " + lastDraw + "\n " + math);
+					var block = await web3.eth.getBlock("latest");
+					var currentTime = block.timestamp;
 
-				//call once from deployer ...............................
-				// await nftContract.methods.changeWinnerPickDuration(1).send({
-				// 	from: currentAddr,
-				// 	value: 0
-				// });
+					// var math = (lastDraw / 1e5) + ((freq * 3600) / 1e5);
+					var math = (lastDraw / 1e5) + (10 / 1e5);
+					// FIXME remove temp math
+					var time = (currentTime / 1e5) > math;
 
-				if (math < 0) {
-					document.getElementById("win").classList.remove("disabled");
-				} else {
-					stat2 += '<p>Pick winner is not ready yet!</p>\n';
-					document.getElementById("win").classList.add("disabled");
+					console.log("freq " + freq + " currentTime " + currentTime / 1e5 + " last draw " + lastDraw / 1e5 + "\n " + time);
+
+					if (time == true) {
+						document.getElementById("win").classList.remove("disabled");
+					} else {
+						stat2 += '<p>* Pick winner is not ready yet!</p>\n';
+						document.getElementById("win").classList.add("disabled");
+					}
+				}
+				else {
+					stat2 += '<p>* Pot balance is 0!</p>\n';
 				}
 			} else {
-				stat2 = '<p>No eligible gems in the pot</p>\n';
+				stat2 = '<p>* No eligible gems in the pot!</p>\n';
 				document.getElementById("win").classList.add("disabled");
 			}
 
@@ -1161,7 +1213,15 @@ async function getOwned(bal) {
 		var tokenId = await nftContract.methods.tokenOfOwnerByIndex(currentAddr, i).call(); //get token
 		var gemStatus = await nftContract.methods.gemStatus(tokenId).call(); //get the status of gem from token
 
-		const obj = { token: tokenId, level: gemStatus.level, balance: gemStatus.balance };
+		var gemImage;
+		var uri = await nftContract.methods.tokenURI(tokenId).call(); //getImage
+		await fetch(uri)
+			.then(res => res.json())
+			.then(data => {
+				gemImage = data.image;
+			});
+
+		const obj = { token: tokenId, level: gemStatus.level, balance: gemStatus.balance, gemImage: gemImage };
 		ownedNFts.push(obj);
 		// console.log(obj);
 	}
@@ -1183,10 +1243,9 @@ async function getOwnedPaintSwap(bal) {
 	nfts.forEach(nft => {
 		var tokenId = nft.tokenId; //paintswap method
 		var gemStatus = nftContract.methods.gemStatus(tokenId).call(); //get the status of gem from token
-		//getImage
 
 		//add to array
-		var obj = { token: tokenId, level: gemStatus.level, balance: gemStatus.balance };
+		var obj = { token: tokenId, level: gemStatus.level, balance: gemStatus.balance, gemImage: nft.image };
 		ownedNFts.push(obj);
 	})
 	ownedNFts.sort((a, b) => a.token - b.token);
@@ -1199,24 +1258,14 @@ async function showImage(num, token) {
 	var gem = document.getElementById("gemImage" + num);
 	gemContainer = '';
 
-	try {
-		var uri = await nftContract.methods.tokenURI(token).call();
-		await fetch(uri)
-			.then(res => res.json())
-			.then(data => {
-				// console.log(data);
-				gemContainer += '<div id="myGemImage' + num + '" class="myGemImage">\n';
-				gemContainer += '<img class="gem" src="' + data.image + '"></div>\n';
-				gemContainer += '<p class="m-0 p-small text-center text-white">#' + token + '</p>\n';
-				document.getElementById("gemImage" + num).innerHTML = gemContainer;
-			})
-			.catch(err => {
-				console.log("error: " + err)
-				//debugAlert("getStaked() err" + err);
-			});
-	} catch (error) {
-		console.log(error);
-	}
+	var gemObj = ownedNFts.find(obj => obj.token === token);
+	// console.log(gemObj.token);
+	// console.log(data);
+	gemContainer += '<div id="myGemImage' + num + '" class="myGemImage">\n';
+	gemContainer += '<img class="gem" src="' + gemObj.gemImage + '"></div>\n';
+	gemContainer += '<p class="m-0 p-small text-center text-white">#' + token + '</p>\n';
+	document.getElementById("gemImage" + num).innerHTML = gemContainer;
+
 }
 
 async function dropDownSetup() {

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.17;
+pragma solidity ^0.8.19;
 
 /*
 GemFi
@@ -8,6 +8,7 @@ GemFi
 import "hardhat/console.sol";
 
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
+// import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/utils/Base64.sol";
 
@@ -25,17 +26,15 @@ struct Epoch {
 struct gemProperty {
     uint256 level;
     uint256 balance;
-    address owner;
 }
 
-contract test is ERC721Enumerable {
+contract GemFi is ERC721Enumerable {
     using Strings for uint256;
     using Counters for Counters.Counter;
     Counters.Counter private supply;
     address public owner;
     address public RANDOM = 0x54F3f10f95363c8CBa51c7f6f6b70FaFF9e79Eb4;
 
-    //Once gems are upgraded, low lvl gems will be transfered to dead address
     uint256 public activeSupply;
     uint256 public highestGemLevel;
     uint256 public gamePot;
@@ -49,7 +48,6 @@ contract test is ERC721Enumerable {
     mapping(uint256 => mapping(uint256 => bool)) private gemIsHighestLevel;
 
     uint256 private mintChance;
-
     mapping(uint256 => gemProperty) private gem;
 
     uint256 public epochIndex = 1;
@@ -59,7 +57,7 @@ contract test is ERC721Enumerable {
     event GemUpgraded(bool trueOrFalse, uint256 gemId);
     event WinnerPicked(uint256 gemId);
 
-    constructor() ERC721("test", "ttt") {
+    constructor() ERC721("GemFi", "GMF") {
         owner = msg.sender;
         resolveEpochIfNeeded();
     }
@@ -86,7 +84,7 @@ contract test is ERC721Enumerable {
 
         item[
             0
-        ] = '<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 600 800" width="300" height="400">';
+        ] = '<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 300 400" width="300" height="400">';
 
         item[
             1
@@ -106,7 +104,7 @@ contract test is ERC721Enumerable {
 
         item[5] = string(
             abi.encodePacked(
-                '<text x="150" y="95" style="fill:white;opacity:0.6;font-size:20px" text-anchor="middle">GemFi<tspan x="150" y="270" text-anchor="middle">Level:</tspan><tspan text-anchor="middle">',
+                '<text x="150" y="95" style="fill:black;opacity:0.8;font-size:25px;font-weight:bold" text-anchor="middle">GemFi<tspan x="150" y="270" text-anchor="middle">Level: </tspan><tspan text-anchor="middle">',
                 toString(gem[_gemId].level),
                 "</tspan>"
             )
@@ -114,7 +112,7 @@ contract test is ERC721Enumerable {
 
         item[6] = string(
             abi.encodePacked(
-                '<tspan x="150" y="295" text-anchor="middle">Balance:</tspan><tspan text-anchor="middle">',
+                '<tspan x="150" y="295" text-anchor="middle">Balance: </tspan><tspan text-anchor="middle">',
                 toString(gem[_gemId].balance / 1000000000000000000),
                 "</tspan>"
             )
@@ -141,7 +139,7 @@ contract test is ERC721Enumerable {
                     abi.encodePacked(
                         '{"name": "GemFi #',
                         toString(_gemId),
-                        '", "description": "GemFi is a fun minting game.", "image": "data:image/svg+xml;base64,',
+                        '", "description": "GemFI is a cutting-edge SVG NFT-based, user-driven GameFi project with the unique thrill of potentially winning the big Gem Pot.", "image": "data:image/svg+xml;base64,',
                         Base64.encode(bytes(output)),
                         '"}'
                     )
@@ -270,6 +268,7 @@ contract test is ERC721Enumerable {
     }
 
     function pickWinner(uint256 _gemId) public {
+        require(gamePot > 0, "Game pot empty");
         require(
             block.timestamp > (lastDraw + (winnerPickDuration * 3600)) &&
                 highestLevelGems.length > 0,
@@ -284,7 +283,7 @@ contract test is ERC721Enumerable {
         lastDraw = block.timestamp;
         uint256 winnerIndex = _randomNumber % highestLevelGems.length;
         lastWinner = highestLevelGems[winnerIndex];
-        require(payable(gem[winnerIndex].owner).send((gamePot * 90) / 100));
+        require(payable(ownerOf(lastWinner)).send((gamePot * 90) / 100));
         collectedFee += (gamePot * 10) / 100;
         gamePot = 0;
         emit WinnerPicked(lastWinner);
@@ -332,8 +331,8 @@ contract test is ERC721Enumerable {
         _randomNumber = uint256(
             keccak256(
                 abi.encodePacked(
-                    epochs[randomIndexEpoch].randomness
-                    // IRandomNumberGenerator(RANDOM).getRandomNumber()
+                    epochs[randomIndexEpoch].randomness,
+                    IRandomNumberGenerator(RANDOM).getRandomNumber()
                 )
             )
         );

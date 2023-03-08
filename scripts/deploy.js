@@ -20,6 +20,7 @@ async function main() {
 
     await token.deployed();
     console.log("GemFi deployed to:", token.address);
+    await hre.network.provider.send("hardhat_mine", ["0x1000"]);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
