@@ -1157,24 +1157,38 @@ async function getOwned(bal) {
 
 async function getOwnedPaintSwap(bal) {
 	////===========paintSwap method=============//
-	var response = await fetch(`https: //api.paintswap.finance/v2/userNFTs?numToSkip=0&numToFetch=${bal}&user=${currentAddr}
-		&orderBy=lastTransferTimestamp&orderDirection=desc&collections=${contAddress
-		}`)
+	var response = await fetch(`https://api.paintswap.finance/v2/userNFTs?numToSkip=0&numToFetch=${bal}&user=${currentAddr}
+		&orderBy=lastTransferTimestamp&orderDirection=desc&collections=${contAddress}`)
 		.catch(err => {
 			console.log("Error fetching from paintswap: " + err)
+			sendAlert("Error getting owned Gems. Please reload");
 		});
-	console.log(response);
-	var nfts = await response.json();
+	// console.log(response);
 
-	nfts.forEach(nft => {
-		var tokenId = nft.tokenId; //paintswap method
-		var gemStatus = nftContract.methods.gemStatus(tokenId).call(); //get the status of gem from token
+	if (response) {
+		var nfts = await response.json();
 
-		//add to array
-		var obj = { token: tokenId, level: gemStatus.level, balance: gemStatus.balance, gemImage: nft.image };
-		ownedNFts.push(obj);
-	})
-	ownedNFts.sort((a, b) => a.token - b.token);
+		for (let i = 0; i < bal; i++) {
+			var nft = nfts.nfts[i];
+			// console.log(nft);
+			var tokenId = nft.tokenId; //paintswap method
+			// console.log(tokenId);
+			var gemStatus = await nftContract.methods.gemStatus(tokenId).call(); //get the status of gem from token
+
+			var gemImage;
+			var uri = await nftContract.methods.tokenURI(tokenId).call(); //getImage
+			await fetch(uri)
+				.then(res => res.json())
+				.then(data => {
+					gemImage = data.image;
+				});
+
+			//add to array
+			var obj = { token: tokenId, level: gemStatus.level, balance: gemStatus.balance, gemImage: gemImage };
+			ownedNFts.push(obj);
+		}
+		ownedNFts.sort((a, b) => a.token - b.token);
+	}
 }
 /* ----------------------------
 *	Show Image of GEM
