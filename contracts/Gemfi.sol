@@ -270,8 +270,7 @@ contract GemFi is ERC721Enumerable {
     function pickWinner(uint256 _gemId) public {
         require(gamePot > 0, "Game pot empty");
         require(
-            block.timestamp > (lastDraw + (winnerPickDuration * 3600)) &&
-                highestLevelGems.length > 0,
+            block.timestamp > (lastDraw + 10) && highestLevelGems.length > 0,
             "Not ready yet"
         );
         require(

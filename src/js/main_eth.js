@@ -203,20 +203,7 @@ const contAbi = [
 	},
 	{
 		"inputs": [],
-		"name": "epochIndex",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "gamePot",
+		"name": "gemPot",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -541,49 +528,6 @@ const contAbi = [
 		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "index",
-				"type": "uint256"
-			}
-		],
-		"name": "tokenByIndex",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "owner",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "index",
-				"type": "uint256"
-			}
-		],
-		"name": "tokenOfOwnerByIndex",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
 				"name": "_gemId",
 				"type": "uint256"
 			}
@@ -594,19 +538,6 @@ const contAbi = [
 				"internalType": "string",
 				"name": "",
 				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "totalSupply",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
 			}
 		],
 		"stateMutability": "view",
@@ -692,8 +623,8 @@ const contAbi = [
 		"type": "function"
 	}
 ]
-// FIXME
-const contAddress = "0xaB7B4c595d3cE8C85e16DA86630f2fc223B05057"; //Test FTM net/ hardhat
+
+const contAddress = "0x53fe7DA3bB36218cDfc7a11a6bBB2C0D31Fd7E4E"; //Test FTM net/ hardhat
 
 var nftContract;
 var currentAddr;
@@ -751,7 +682,7 @@ async function loadWeb3() {
 		$('#connectButton').attr('disabled', true)
 		var chainID = await web3.eth.getChainId();
 		console.log('Connected to chain ' + chainID)
-		if (chainID == 31337) { //4002 test net ftm //main 250 ///localhost hardhat 31337
+		if (chainID == 250) { //4002 test net ftm //main 250 ///localhost hardhat 31337
 			$('#connectButton').attr('disabled', false);
 			$('#connectButton').click(function () {
 				connect();
@@ -805,9 +736,8 @@ async function getMintTokenID(tx, num) {
 * ----------------------------*/
 async function mint(mintAmount) {
 	var mintPrice = 1e18;
-	//FIXME call mintcost from contract
 	// var mintPrice = nftContract.methods.mintCost().call();
-	// console.log(mintPrice);
+	console.log(mintPrice);
 	var totalPrice = mintPrice * mintAmount;
 
 	await nftContract.methods.mint(mintAmount).send({
@@ -842,6 +772,7 @@ async function mint(mintAmount) {
 async function mintWrapper() {
 	var mintAmount = document.getElementById('input').value;
 	mint(mintAmount);
+	console.log(mintAmount);
 }
 
 /* ----------------------------
@@ -1064,8 +995,7 @@ async function pickWinner() {
 async function contractCreationTime() {
 	var blockNumber, time, date;
 
-	// FIXME
-	hash = '0x84b42165e183c66699e5784fe875a1a83c50b4ba09651df6d7ee7d9415637fa9'; // from create ftm-scan
+	hash = '0xaa205006534dfc03e1557c59c050edc5361fcad4f5e56ac467a83613811c820b'; // from create ftm-scan
 
 	await web3.eth.getTransactionReceipt(hash, function (err, rec) {
 		if (rec) {
@@ -1088,7 +1018,7 @@ async function reloadStats() {
 			var stat = '';
 			var stat2 = '';
 
-			var gemPot = await nftContract.methods.gamePot().call();
+			var gemPot = await nftContract.methods.gemPot().call();
 			var activeSupply = await nftContract.methods.activeSupply().call();
 			var highestLevel = await nftContract.methods.highestGemLevel().call();
 			var lastDraw = await nftContract.methods.lastDraw().call();
@@ -1146,18 +1076,14 @@ async function reloadStats() {
 
 				if (gemPot > 0) {
 					var freq = await nftContract.methods.winnerPickDuration().call();
-					// NOTE call once from deployer ...............................
-					// await changeWinnerPickDuration();
 
 					var block = await web3.eth.getBlock("latest");
 					var currentTime = block.timestamp;
 
-					// var math = (lastDraw / 1e5) + ((freq * 3600) / 1e5);
+					var math = (lastDraw / 1e5) + ((freq * 3600) / 1e5);
 					var math = (lastDraw / 1e5) + (10 / 1e5);
-					// FIXME remove temp math
-					var time = (currentTime / 1e5) > math;
 
-					console.log("freq " + freq + " currentTime " + currentTime / 1e5 + " last draw " + lastDraw / 1e5 + "\n " + time);
+					// console.log("freq " + freq + " currentTime " + currentTime / 1e5 + " last draw " + lastDraw / 1e5 + "\n " + time);
 
 					if (time == true) {
 						document.getElementById("win").classList.remove("disabled");
@@ -1168,6 +1094,7 @@ async function reloadStats() {
 				}
 				else {
 					stat2 += '<p>* Pot balance is 0!</p>\n';
+					document.getElementById("win").classList.add("disabled");
 				}
 			} else {
 				stat2 = '<p>* No eligible gems in the pot!</p>\n';
@@ -1239,7 +1166,6 @@ async function getOwnedPaintSwap(bal) {
 	console.log(response);
 	var nfts = await response.json();
 
-	var htmlText = '';
 	nfts.forEach(nft => {
 		var tokenId = nft.tokenId; //paintswap method
 		var gemStatus = nftContract.methods.gemStatus(tokenId).call(); //get the status of gem from token
@@ -1297,25 +1223,29 @@ async function dropDownSetup() {
 	try {
 		bal = await nftContract.methods.balanceOf(currentAddr).call();
 		// console.log("balance " + bal);
-		await getOwned(bal);
-		// await getOwnedPaintSwap(bal);
+		// await getOwned(bal);
 
-		// ====//get owned by index method=================================================//
-		for (let i = 0; i < bal; i++) {
-			var obj = ownedNFts[i];
-			//dropdown menu
-			htmlWD += '<li class="dropdown-item">Gem #' + obj.token + ' :Lvl ' + obj.level + ' :Bal ' + obj.balance / 1e18 + '</li>\n';
+		if (bal > 0) {
+			await getOwnedPaintSwap(bal);
+
+			// ====//get owned by index method=================================================//
+			for (let i = 0; i < bal; i++) {
+				var obj = ownedNFts[i];
+				//dropdown menu
+				htmlWD += '<li class="dropdown-item">Gem #' + obj.token + ' :Lvl ' + obj.level + ' :Bal ' + obj.balance / 1e18 + '</li>\n';
+			}
+			// ====//paint Swap=================================================//
+			// htmlWD = await getOwnedPaintSwap(bal);
+			one.innerHTML = htmlWD;
+			two.innerHTML = htmlWD;
+			three.innerHTML = htmlWD;
+			withD.innerHTML = htmlWD;
 		}
-		// ====//paint Swap=================================================//
-		// htmlWD = await getOwnedPaintSwap(bal);
-		one.innerHTML = htmlWD;
-		two.innerHTML = htmlWD;
-		three.innerHTML = htmlWD;
-		withD.innerHTML = htmlWD;
 	}
 	catch (error) {
 		console.log("Get owned gem error:", error);
 	}
+
 }
 
 /* ----------------------------
