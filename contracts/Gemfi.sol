@@ -5,8 +5,6 @@ pragma solidity ^0.8.17;
 GemFi
 */
 
-import "hardhat/console.sol";
-
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/utils/Base64.sol";
